@@ -1,0 +1,8 @@
+PACKAGES.md
+
+{{ if ne .chezmoi.os "linux" }}
+.config/
+.local/
+.profile
+.zshrc
+{{ end }}
