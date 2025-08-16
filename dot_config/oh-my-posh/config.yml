@@ -1,0 +1,67 @@
+yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+secondary_prompt:
+    template: '> '
+transient_prompt:
+    template: '> '
+upgrade:
+    source: cdn
+    interval: 168h
+    auto: false
+    notice: false
+console_title_template: '{{ .Shell }} in {{ .Folder }}'
+blocks:
+    - type: prompt
+      alignment: left
+      segments:
+        - type: session
+          style: plain
+          template: '<green>{{ .UserName }}@{{ .HostName }}{{ if .WSL }} (WSL){{ end }}</> '
+
+        - type: path
+          style: plain
+          template: 'on <cyan>{{ path .Path .Location }}</> '
+          properties:
+            style: folder
+
+        - type: git
+          style: plain
+          template: '<blue>(git:{{ .HEAD }})</> '
+          properties:
+            branch_template: '{{ trunc 25 .Branch }}'
+            branch_icon: ""
+            commit_icon: ""
+
+    - type: prompt
+      alignment: left
+      newline: true
+      segments:
+        - type: text
+          style: plain
+          template: '{{ if .Root }}#{{ else }}${{ end }} '
+
+tooltips:
+    - properties:
+        display_default: true
+      leading_diamond: 
+      trailing_diamond: 
+      template: '  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} '
+      foreground: p:white
+      background: p:orange
+      type: aws
+      style: diamond
+      tips:
+        - aws
+    - properties:
+        display_default: true
+      leading_diamond: 
+      trailing_diamond: 
+      template: '  {{ .Name }} '
+      foreground: p:white
+      background: p:blue
+      type: az
+      style: diamond
+      tips:
+        - az
+version: 3
+final_space: false
