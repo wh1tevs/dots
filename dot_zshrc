@@ -1,0 +1,54 @@
+source "$HOME/.profile"
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE="$HOME/.cache/zsh_history"
+
+################################################################################
+# ZAP ##########################################################################
+################################################################################
+
+ZAP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zap"
+
+if [ ! -f "$ZAP_HOME/zap.zsh" ]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+fi
+
+source "$ZAP_HOME/zap.zsh"
+
+# plugins ######################################################################
+
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zap-zsh/completions"
+plug "embeddedpenguin/sanekeybinds"
+
+################################################################################
+# zsh options ##################################################################
+################################################################################
+
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+setopt autocd correct extended_glob no_beep
+
+################################################################################
+# Oh My Posh ###################################################################
+################################################################################
+
+if [ ! -f "$HOME/.local/bin/oh-my-posh" ]; then
+  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
+fi
+
+eval "$(oh-my-posh init zsh)"
+
+################################################################################
+# Aliases ######################################################################
+################################################################################
+
+export LS_OPTIONS="--color=auto --group-directories-first"
+
+alias ls="/bin/ls -ghAG $LS_OPTIONS"
+alias lsl="/bin/ls -hlA $LS_OPTIONS"
+
+if [[ ! -f "/bin/hx" && -f "/bin/helix" ]]; then
+  alias hx="/bin/helix"
+fi
