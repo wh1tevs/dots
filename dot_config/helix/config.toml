@@ -1,0 +1,9 @@
+theme = "monokai_pro_ristretto"
+
+[editor]
+true-color = true
+line-number = "relative"
+default-line-ending = "lf"
+
+[editor.smart-tab]
+supersede-menu = true
