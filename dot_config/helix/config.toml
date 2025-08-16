@@ -7,3 +7,6 @@ default-line-ending = "lf"
 
 [editor.smart-tab]
 supersede-menu = true
+
+[keys.insert]
+C-space = "completion"

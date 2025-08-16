@@ -1,0 +1,91 @@
+################################################################################
+## Web #########################################################################
+################################################################################
+ 
+# css ##########################################################################
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "css-variables-language-server", "cssmodules-language-server" ]
+auto-format = false
+
+[[language]]
+name = "scss"
+language-servers = [ "vscode-css-language-server", "css-variables-language-server", "cssmodules-language-server" ]
+auto-format = false
+
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args = [ "--stdio" ]
+config.css = { validate = true }
+config.scss = { validate = true }
+config.less = { validate = true }
+
+[language-server.css-variables-language-server]
+command = "css-variables-language-server"
+args = [ "--stdio" ]
+config.cssVariables.lookupFiles = [ "**/*.less", "**/*.scss", "**/*.sass", "**/*.css" ]
+config.cssVariables.blacklistFolders = [
+  "**/.cache",
+  "**/.DS_Store",
+  "**/.git",
+  "**/.hg",
+  "**/.next",
+  "**/.svn",
+  "**/bower_components",
+  "**/CVS",
+  "**/dist",
+  "**/node_modules",
+  "**/tests",
+  "**/tmp",
+]
+
+[language-server.cssmodules-language-server]
+command = "cssmodules-language-server"
+args = [ "--stdio" ]
+
+
+################################################################################
+## JavaScript/TypeScript #######################################################
+################################################################################
+
+# [[language]]
+# name = "typescript"
+# file-types = [
+#   "ts",
+#   "mts",
+#   "cts",
+#   "vue",
+# ]
+
+[language-server.typescript-language-server]
+command = "vtsls"
+args = ["--stdio"]
+
+[language-server.typescript-language-server.config.vtsls]
+autoUseWorkspaceTsdk = true
+enableMoveToFileCodeAction = true
+
+[language-server.typescript-language-server.config.typescript]
+updateImportsOnFileMove = "always"
+tsserver = { experimental = { enableProjectDiagnostics = true } }
+
+[language-server.typescript-language-server.config.javascript]
+updateImportsOnFileMove = "always"
+
+################################################################################
+## Vue #########################################################################
+################################################################################
+
+[[language]]
+name = "vue"
+language-servers = [ "typescript-language-server", "vuels", "tailwindcss-ls" ]
+
+[[language-server.typescript-language-server.config.vtsls.tsserver.globalPlugins]]
+name = "@vue/typescript-plugin"
+location = "/home/sergey/.volta/tools/shared/@vue/language-server"
+languages = [ "vue" ]
+configNamespace = "typescript"
+# important if `autoUseWorkspaceTsdk = true`
+enableForWorkspaceTypeScriptVersions = true
+
