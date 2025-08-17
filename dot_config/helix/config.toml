@@ -4,6 +4,7 @@ theme = "monokai_pro_ristretto"
 true-color = true
 line-number = "relative"
 default-line-ending = "lf"
+rulers = [ 80 ]
 
 [editor.smart-tab]
 supersede-menu = true

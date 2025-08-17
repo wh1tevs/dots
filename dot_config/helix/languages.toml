@@ -49,15 +49,6 @@ args = [ "--stdio" ]
 ## JavaScript/TypeScript #######################################################
 ################################################################################
 
-# [[language]]
-# name = "typescript"
-# file-types = [
-#   "ts",
-#   "mts",
-#   "cts",
-#   "vue",
-# ]
-
 [language-server.typescript-language-server]
 command = "vtsls"
 args = ["--stdio"]
@@ -88,4 +79,3 @@ languages = [ "vue" ]
 configNamespace = "typescript"
 # important if `autoUseWorkspaceTsdk = true`
 enableForWorkspaceTypeScriptVersions = true
-
