@@ -1,17 +1,16 @@
 PACKAGES.md
 
-{{ if ne .chezmoi.os "linux" }}
+{{- if ne .chezmoi.os "linux" }}
 .config/*
 .local/*
 .profile
 .zshrc
-{{ end }}
+{{- end }}
 
-{{ if ne .chezmoi.os "windows" }}
-Documents/*
-{{ end }}
+{{- if ne .chezmoi.os "windows" }}
+Documents/
+{{- end }}
 
-{{ if eq .chezmoi.os "windows" }}
+{{- if eq .chezmoi.os "windows" }}
 !.config/oh-my-posh
-{{ end }}
-
+{{- end }}
