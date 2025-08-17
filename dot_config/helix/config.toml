@@ -12,5 +12,9 @@ enable = true
 [editor.smart-tab]
 supersede-menu = true
 
+[keys.normal]
+C-h = ":toggle file-picker.hidden"
+C-H = ":toggle file-picker.git-ignore"
+
 [keys.insert]
 C-space = "completion"
