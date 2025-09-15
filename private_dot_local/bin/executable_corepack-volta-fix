@@ -1,0 +1,13 @@
+#!/bin/bash
+# vim: ft=sh
+
+set -euo pipefail
+
+if ! npm -v &>/dev/null; then
+  echo "npm not installed"
+  exit
+fi
+
+npm install -g corepack
+
+corepack enable --install-directory "${VOLTA_HOME:-$HOME/.volta}/bin"
