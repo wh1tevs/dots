@@ -2,17 +2,16 @@
 
 set -euo pipefail
 
-
 if ! command -v volta &>/dev/null; then
-  echo "[*] Volta not installed, skipping corepack fix"
-  exit 1
+	echo "[*] Volta not installed, skipping corepack fix"
+	exit 1
 fi
 
 if ! command corepack -v &>/dev/null; then
-  echo "[*] Installing corepack"
-  npm -g install corepack
-  echo "[*] Enabling corepack"
-  corepack enable --install-directory "$VOLTA_HOME/bin"
+	echo "[*] Installing corepack"
+	npm -g install corepack
+	echo "[*] Enabling corepack"
+	corepack enable --install-directory "$VOLTA_HOME/bin"
 fi
 
 echo "Done"

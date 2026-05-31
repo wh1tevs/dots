@@ -3,7 +3,7 @@ source "$HOME/.profile"
 ZAP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zap"
 
 if [ ! -f "$ZAP_HOME/zap.zsh" ]; then
-  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+	zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
 fi
 
 source "$ZAP_HOME/zap.zsh"
@@ -21,7 +21,7 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_SPACE
 setopt autocd correct extended_glob no_beep
 
 if [ ! -f "$HOME/.local/bin/oh-my-posh" ]; then
-  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
+	curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 fi
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/my-minimal.omp.yaml)"

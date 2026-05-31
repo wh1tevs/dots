@@ -3,18 +3,18 @@
 set -euo pipefail
 
 if [[ -z "$VOLTA_HOME" ]]; then
-  export VOLTA_HOME="$HOME/.volta"
+	export VOLTA_HOME="$HOME/.volta"
 fi
 
 if grep -q "$VOLTA_HOME/bin" <<< "$PATH"; then
-  export PATH="$VOLTA_HOME/bin:$PATH"
+	export PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
 if ! command -v volta &>/dev/null; then
-  echo "[*] Installing volta"
-  curl https://get.volta.sh | bash
+	echo "[*] Installing volta"
+	curl https://get.volta.sh | bash
 else
-  echo "[*] Volta already installed, skipping"
+	echo "[*] Volta already installed, skipping"
 fi
 
 echo "Done"
