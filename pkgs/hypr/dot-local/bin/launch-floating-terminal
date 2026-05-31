@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cmd="$*"
-exec setsid uwsm app -- kitty --class=floating-terminal bash -c "$cmd"
-
-# vim: ft=bash

@@ -13,17 +13,8 @@ fi
 if ! command -v volta &>/dev/null; then
   echo "[*] Installing volta"
   curl https://get.volta.sh | bash
-fi
-
-if ! command node -v &>/dev/null; then
-  echo "[*] Installing node lts"
-  volta install node@lts
-fi
-
-if ! command corepack -v &>/dev/null; then
-  echo "[*] Enabling corepack"
-  npm -g install corepack
-  corepack enable --install-directory "$VOLTA_HOME/bin"
+else
+  echo "[*] Volta already installed, skipping"
 fi
 
 echo "Done"

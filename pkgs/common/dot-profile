@@ -1,29 +1,15 @@
-_profile_common="$HOME/.profile.common"
-_profile_override="$HOME/.profile.override"
-_profile_machine_override="$HOME/.profile.machine.override"
-_profile_machine="$HOME/.profile.machine"
-_profile_local="$HOME/.profile.local"
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
-if [ -f "$_profile_override" ]; then
-  . "$_profile_override"
-  return
-fi
+export VOLTA_HOME="$HOME/.volta"
+[[ -d "$VOLTA_HOME" ]] && export PATH="$VOLTA_HOME/bin:$PATH"
 
-if [ -f "$_profile_machine_override" ]; then
-  . "$_profile_machine_override"
-  return
-fi
+export PATH="$HOME/.cargo/bin:$PATH"
 
-if [ -f "$_profile_common" ]; then
-  . "$_profile_common"
-fi
+export PATH="$HOME/.local/bin:$PATH"
 
-if [ -f "$_profile_machine" ]; then
-  . "$_profile_machine"
-fi
+export EDITOR="/bin/nvim"
 
-if [ -f "$_profile_local" ]; then
-  . "$_profile_local"
-fi
+[[ -f "$HOME/.profile.local" ]] && . "$HOME/.profile.local"
 
 # vim: ft=sh

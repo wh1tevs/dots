@@ -1,29 +1,38 @@
-_zsh_common="$HOME/.zshrc.common"
-_zsh_override="$HOME/.zshrc.override"
-_zsh_machine_override="$HOME/.zshrc.machine.override"
-_zsh_machine="$HOME/.zshrc.machine"
-_zsh_local="$HOME/.zshrc.local"
+source "$HOME/.profile"
 
-if [[ -f "$_zsh_override" ]]; then
-  source "$_zsh_override"
-  return
+ZAP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zap"
+
+if [ ! -f "$ZAP_HOME/zap.zsh" ]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
 fi
 
-if [[ -f "$_zsh_machine_override" ]]; then
-  source "$_zsh_machine_override"
-  return
+source "$ZAP_HOME/zap.zsh"
+
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zap-zsh/completions"
+plug "embeddedpenguin/sanekeybinds"
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE="$HOME/.cache/zsh_history"
+
+setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_SPACE
+setopt autocd correct extended_glob no_beep
+
+if [ ! -f "$HOME/.local/bin/oh-my-posh" ]; then
+  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 fi
 
-if [[ -f "$_zsh_common" ]]; then
-  source "$_zsh_common"
-fi
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/my-minimal.omp.yaml)"
 
-if [[ -f "$_zsh_machine" ]]; then
-  source "$_zsh_machine"
-fi
+bindkey -v
 
-if [[ -f "$_zsh_local" ]]; then
-  source "$_zsh_local"
-fi
+export LS_OPTIONS="--color=auto --group-directories-first"
+
+alias ls="/bin/ls -ghAG $LS_OPTIONS"
+alias lsl="/bin/ls -hlA $LS_OPTIONS"
+
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 # vim: ft=sh
